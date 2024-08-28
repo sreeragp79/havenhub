@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "202527854156",
+    "project_id": "havenhub-1ef83",
+    "storage_bucket": "havenhub-1ef83.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202527854156:android:dc094ee0f82f1f0c3faee9",
+        "android_client_info": {
+          "package_name": "com.example.haven_hub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI8hK9D9jwV4hnhHY2BzHM75voJsE9P7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
