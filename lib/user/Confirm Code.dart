@@ -56,26 +56,29 @@ class _OtpState extends State<ConfirmCode1> {
                 ),
               ),
             ),
-            SizedBox(height: height* 0.05,),
+            SizedBox(height: 20,),
 
-            Pinput(
-              length: 4,
-              defaultPinTheme: (
-                  PinTheme(
-                    textStyle: TextStyle(
-                        fontFamily: "jeju2",
-                        fontSize: 23
-                    ),
-                    width: width* 0.16,
-                    height: height* 0.06,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.20),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  )
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: Pinput(
+                length: 6,
+                defaultPinTheme: (
+                    PinTheme(
+                      textStyle: TextStyle(
+                          fontFamily: "jeju2",
+                          fontSize: 23
+                      ),
+                      width: width* 0.16,
+                      height: height* 0.06,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.20),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    )
+                ),
               ),
             ),
-            SizedBox(height: height* 0.06,),
+            SizedBox(height: 37,),
             TextButton(
               style: TextButton.styleFrom(
                 backgroundColor:Color(0xff061673),
@@ -132,6 +135,7 @@ class _OtpState extends State<ConfirmCode1> {
                 ],
               ),
             ),
+
 
           ],
         ),

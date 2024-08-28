@@ -5,8 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_storage/firebase_storage.dart';
 
-import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -94,7 +92,7 @@ notifyListeners();
           doc.get("FIRST_NAME"),
           doc.get("PHONE_NUMBER"),
           doc.get("EMAIL"),
-          doc.get("PASSWORD")
+          doc.get("PASSWORD"),
         );
       }).toList();
 
@@ -220,6 +218,7 @@ void addResort() {
   db.collection("RESORT_DETAILS").doc(id).set(addressDetails);
   notifyListeners();
 }
+
 }
 
 

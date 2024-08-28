@@ -14,3 +14,13 @@ class EditBookingDateModel{
   String value;
   EditBookingDateModel(this.id,this.checkIn,this.checkOut,this.value);
 }
+
+// Favorite Model Classs
+class FavoriteModel{
+  String image;
+  String name;
+  String place;
+  String ratingImage;
+  String rate;
+  FavoriteModel(this.image,this.name,this.place,this.ratingImage,this.rate);
+}

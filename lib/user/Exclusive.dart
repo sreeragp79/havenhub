@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:haven_hub/Provider/MainProvider.dart';
 import 'package:haven_hub/user/strand.dart';
+import 'package:provider/provider.dart';
 
 import 'Am Seagle.dart';
 import 'California.dart';
@@ -208,114 +210,119 @@ class _allClassState extends State<Exclusive> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ListView.builder(
-              physics: ScrollPhysics(),
-              itemCount: image.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return  Align(alignment: Alignment.center,
-                  child: Padding(
-                    padding:  EdgeInsets.symmetric(vertical: height/90.25),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => pages1(index),));
-                      },
-                      child: Container(
-                        width: width * 0.90,
-                        height: height * 0.14,
-                        decoration: BoxDecoration(
-                          // color: Color(0xffFFFFFF).withOpacity(1),
-                          color:  Color(0xffFFFFFF).withOpacity(1),
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: [
-                            BoxShadow(
-                                spreadRadius: 2,
-                                color: CupertinoColors.inactiveGray
-                                    .withOpacity(0.26),
-                                blurRadius: 4,
-                                offset: Offset(0, 3)),
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding:  EdgeInsets.all(height/98.8),
-                              child: Image.asset(image[index],),
+      body: Consumer<MainProvider>(
+        builder: (context,favoriteValue,child) {
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                ListView.builder(
+                  physics: ScrollPhysics(),
+                  itemCount: image.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return  Align(alignment: Alignment.center,
+                      child: Padding(
+                        padding:  EdgeInsets.symmetric(vertical: height/90.25),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => pages1(index),));
+                          },
+                          child: Container(
+                            width: width * 0.90,
+                            height: height * 0.14,
+                            decoration: BoxDecoration(
+                              // color: Color(0xffFFFFFF).withOpacity(1),
+                              color:  Color(0xffFFFFFF).withOpacity(1),
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: [
+                                BoxShadow(
+                                    spreadRadius: 2,
+                                    color: CupertinoColors.inactiveGray
+                                        .withOpacity(0.26),
+                                    blurRadius: 4,
+                                    offset: Offset(0, 3)),
+                              ],
                             ),
-                            Column(crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Row(
                               children: [
-                                SizedBox(height: height/74.16,),
                                 Padding(
-                                  padding:  EdgeInsets.only(left:  width/68.5),
-                                  child: Text(titile[index],
-                                    style: TextStyle(
-                                      fontSize: width/22.8,
-                                      color: Color(0xff070D30).withOpacity(1),
-                                      fontFamily: "jeju2",
-                                    ),
-                                  ),
+                                  padding:  EdgeInsets.all(height/98.8),
+                                  child: Image.asset(image[index],),
                                 ),
-                                SizedBox(height: height/350.66,),
-                                Padding(
-                                  padding:  EdgeInsets.only(left: width/58.71),
-                                  child: Text(subTitile[index],
-                                    style: TextStyle(
-                                      fontSize: width/27.4,
-                                      fontFamily: "jeju2",
-                                      color: Colors.grey,
-
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: height/300.5,),
-                                Flexible(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: width/91.33),
-                                    child: Image.asset(rating[index], scale: width/115.44,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: height/250.88,),
-                                Padding(
-                                  padding: EdgeInsets.only(left: width/82.2),
-                                  child: Row(
-                                    children: [
-                                      Text(price[index],
+                                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: height/74.16,),
+                                    Padding(
+                                      padding:  EdgeInsets.only(left:  width/68.5),
+                                      child: Text(titile[index],
                                         style: TextStyle(
-                                          fontSize: width/15.22,
-                                          fontFamily: "jeju2",
+                                          fontSize: width/22.8,
                                           color: Color(0xff070D30).withOpacity(1),
+                                          fontFamily: "jeju2",
                                         ),
                                       ),
-                                      SizedBox(width: width/4.11,),
-                                      IconButton(onPressed: () {
-                                       setState(() {
-                                         favorite[index]= !favorite[index];
-                                       });
-                                      },
-                                        icon: Icon(Icons.favorite,
-                                        color: favorite[index]? Colors.red:Colors.grey,
+                                    ),
+                                    SizedBox(height: height/350.66,),
+                                    Padding(
+                                      padding:  EdgeInsets.only(left: width/58.71),
+                                      child: Text(subTitile[index],
+                                        style: TextStyle(
+                                          fontSize: width/27.4,
+                                          fontFamily: "jeju2",
+                                          color: Colors.grey,
+
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    SizedBox(height: height/300.5,),
+                                    Flexible(
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: width/91.33),
+                                        child: Image.asset(rating[index], scale: width/115.44,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: height/250.88,),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: width/82.2),
+                                      child: Row(
+                                        children: [
+                                          Text(price[index],
+                                            style: TextStyle(
+                                              fontSize: width/15.22,
+                                              fontFamily: "jeju2",
+                                              color: Color(0xff070D30).withOpacity(1),
+                                            ),
+                                          ),
+                                          SizedBox(width: width/4.11,),
+                                          IconButton(onPressed: () {
+                                           setState(() {
+                                             favorite[index]= !favorite[index];
+
+                                           });
+                                          },
+                                            icon: Icon(Icons.favorite,
+                                            color: favorite[index]? Colors.red:Colors.grey,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
 
-                  ),
-                );
-              },
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        }
       ),
     );
   }
