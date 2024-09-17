@@ -40,7 +40,6 @@ class _SplashState extends State<Splash> {
                     Positioned(
                       bottom: 30,
                       left: 145,
-
                       child: Text(
                         "HavenHub",
                         style: TextStyle(

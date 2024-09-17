@@ -19,7 +19,7 @@ import 'Strandhus.dart';
 import 'Vovo.dart';
 
 class AllClass extends StatefulWidget {
-  const AllClass({super.key});
+  const AllClass({super.key,required});
 
   @override
   State<AllClass> createState() => _allClassState();
@@ -315,6 +315,7 @@ class _allClassState extends State<AllClass> {
                                       },
                                         icon: GestureDetector(
                                           onTap: () {
+
                                             setState(() {
                                               // if(favorite[index] = true){
                                               //   favorite[index]=false;

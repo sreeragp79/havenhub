@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'Book Now.dart';
 import 'Login Page.dart';
+import 'Review.dart';
 
 class amSeagal extends StatefulWidget {
   const amSeagal({super.key});
@@ -138,31 +139,48 @@ class _amSeagalState extends State<amSeagal> {
                               SizedBox(height:  height/90.44,),
                               Padding(
                                 padding: EdgeInsets.only(left: width/19.83),
-                                child: Image.asset("assets/image/32 re.png",scale: width/100.75,),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Review(),));
+                                  },
+                                    child: Image.asset("assets/image/32 re.png",scale: width/100.75,)),
                               ),
                               SizedBox(height: height/20.02,),
                               Positioned(
                                 left: width/1.40,
                                 top: height/3.07,
-                                child: Padding(
-                                  padding:  EdgeInsets.only(left: width/22.83),
-                                  child: Image.asset("assets/image/156 rate.png",scale: width/200.75,),
-                                ),
-                              ),
-                              SizedBox(height: height/14.02,),
-                              Positioned(
-                                left: width/1.40,
-                                top: height/3.07,
-                                child: Padding(
-                                    padding:  EdgeInsets.only(left: width/15.83),
-                                    child:Text("Guest",
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 23),
+                                      child: Text("\$170",
+                                        style: TextStyle(
+                                            fontSize: 40,
+                                            fontFamily: "jeju2"
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 16,),
+                                    Text("Night",
                                       style: TextStyle(
                                           fontFamily: "jeju2",
-                                          fontSize: width/18.68,
-                                          color: Colors.black
+                                          color: CupertinoColors.inactiveGray,
+                                          fontSize: 23
                                       ),
-                                    )
+                                    ),
+                                  ],
                                 ),
+                              ),
+                              SizedBox(height: height/17.02,),
+                              Padding(
+                                  padding:  EdgeInsets.only(left: width/15.83),
+                                  child:Text("Guest",
+                                    style: TextStyle(
+                                        fontFamily: "jeju2",
+                                        fontSize: width/18.68,
+                                        color: Colors.black
+                                    ),
+                                  )
                               ),
 
                               SizedBox(height: height/89,),

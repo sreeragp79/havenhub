@@ -7,11 +7,9 @@ import 'Login Page.dart';
 
 class ConfirmCode1 extends StatefulWidget {
   ConfirmCode1({super.key});
-
   @override
   State<ConfirmCode1> createState() => _OtpState();
 }
-
 class _OtpState extends State<ConfirmCode1> {
 
   @override
@@ -57,7 +55,6 @@ class _OtpState extends State<ConfirmCode1> {
               ),
             ),
             SizedBox(height: 20,),
-
             Padding(
               padding: const EdgeInsets.all(30),
               child: Pinput(
@@ -128,6 +125,7 @@ class _OtpState extends State<ConfirmCode1> {
                         color: Color(0xff070D30),
                         fontSize: 17,
                         fontWeight: FontWeight.w600,
+
                       ),
                     ),
                   ),

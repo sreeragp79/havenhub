@@ -88,9 +88,10 @@ class _Splash2State extends State<Splash2> {
             style: TextStyle(
                 fontSize: width/17.86,
                 fontFamily: "jeju",
-                color: Colors.black.withOpacity(1),
+                color: Colors.black.withOpacity(1).withOpacity(1),
+                fontWeight: FontWeight.w300,
                 wordSpacing:height/887,
-                fontWeight: FontWeight.w600,
+                // fontWeight: FontWeight.w600,
             ),
             ),
             SizedBox(height: height/89,),

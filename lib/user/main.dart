@@ -2,12 +2,14 @@ import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:haven_hub/admin/Hotel%20Model.dart';
 import 'package:haven_hub/user/strand.dart';
 import 'package:provider/provider.dart';
 // import 'package:haven_hub/user/splash%203.dart';
 
 
 import '../Provider/MainProvider.dart';
+import '../admin/Hotels List.dart';
 import '../admin/List of Bookings.dart';
 import '../admin/User Details.dart';
 import '../admin/Update Option.dart';
@@ -35,6 +37,8 @@ import 'Payment Failed.dart';
 import 'Paymet Successful.dart';
 import 'Profile.dart';
 import 'Raceipt.dart';
+import 'Review Adding.dart';
+import 'Review.dart';
 import 'Ruser.dart';
 import 'Seetrasen.dart';
 import 'Sign Up.dart';
@@ -43,7 +47,7 @@ import 'Splash Screen.dart';
 import 'Stay Vista.dart';
 import 'Strandhus.dart';
 import 'Vovo.dart';
-import 'newpage.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,12 +71,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MultiProvider(
+
       providers: [
         ChangeNotifierProvider(create: (context) => MainProvider(),)
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Home(),
+        home: California(),
       ),
     );
   }

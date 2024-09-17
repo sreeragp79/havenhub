@@ -19,8 +19,24 @@ class EditBookingDateModel{
 class FavoriteModel{
   String image;
   String name;
-  String place;
   String ratingImage;
-  String rate;
-  FavoriteModel(this.image,this.name,this.place,this.ratingImage,this.rate);
+  String price;
+  FavoriteModel(this.image,this.name,this.ratingImage,this.price);
+}
+class ResortAddingDetails {
+  String id;
+  String image;
+  String name;
+  String place;
+  String information;
+  ResortAddingDetails(this.id,this.image,this.name,this.place,this.information);
+
+  }
+class ReviewStore{
+  String id;
+  String image;
+  String name;
+  String resortName;
+  String reviewSub;
+  ReviewStore(this.id,this.image,this.name,this.resortName,this.reviewSub);
 }

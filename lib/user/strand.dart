@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'Book Now.dart';
 import 'Login Page.dart';
+import 'Review.dart';
 
 class strand extends StatefulWidget {
   const strand({super.key});
@@ -137,18 +138,40 @@ class _strandState extends State<strand> {
                               SizedBox(height:  height/90.44,),
                               Padding(
                                 padding: EdgeInsets.only(left: width/19.83),
-                                child: Image.asset("assets/image/32 re.png",scale: width/100.75,),
+                                child: InkWell(
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Review(),));
+                                    },
+                                    child: Image.asset("assets/image/32 re.png",scale: width/100.75,)),
                               ),
                               SizedBox(height: height/20.02,),
                               Positioned(
                                 left: width/1.40,
                                 top: height/3.07,
                                 child: Padding(
-                                  padding:  EdgeInsets.only(left: width/22.83),
-                                  child: Image.asset("assets/image/165 r.png",scale: width/200.75,),
+                                  padding: EdgeInsets.only(
+                                      left: width / 22.83),
+                                  child: Row(
+                                    children: [
+                                      Text("\$165",
+                                        style: TextStyle(
+                                            fontSize: 40,
+                                            fontFamily: "jeju2"
+                                        ),
+                                      ),
+                                      SizedBox(width: 16,),
+                                      Text("Night",
+                                        style: TextStyle(
+                                            fontFamily: "jeju2",
+                                            color: CupertinoColors.inactiveGray,
+                                            fontSize: 23
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                              SizedBox(height: height/14.02,),
+                              SizedBox(height: height/18.02,),
                               Positioned(
                                 left: width/1.40,
                                 top: height/3.07,

@@ -67,12 +67,6 @@ class _HomeState extends State<Home> {
     "assets/image/exclusive logo.png",
     "assets/image/exclusive logo.png",
   ];
-  List<String> rate = [
-    "assets/image/170 rat.png",
-    "assets/image/165 r.png",
-    "assets/image/165 r.png",
-    "assets/image/180 r.png",
-  ];
   List<String> like = [
     "assets/image/Heart_01.png",
     "assets/image/Heart_01.png",
@@ -111,6 +105,8 @@ class _HomeState extends State<Home> {
     false,
 
   ];
+  List<String> rate1 = ["\$170", "\$150", "\$180", "\$190"];
+  List<String> day =["Night","Night","Night","Night",];
   // screen hight 890,
   // screen width 411,
   @override
@@ -327,8 +323,21 @@ class _HomeState extends State<Home> {
                                   children: [
                                    Padding(
                                      padding:  EdgeInsets.only(left: width/27.4),
-                                     child: Image.asset(rate[index],scale: width/137,),
+                                     // child: Image.asset(rate[index],scale: width/137,),
+                                     child: Text(rate1[index],
+                                     style: TextStyle(
+                                       fontSize: 30,
+                                         fontFamily: "jeju2"
+                                     ),
+                                     ),
                                    ),
+                                    SizedBox(width: 16,),
+                                    Text(day[index],
+                                    style: TextStyle(
+                                      fontFamily: "jeju2",
+                                      color: CupertinoColors.inactiveGray
+                                    ),
+                                    ),
                                     SizedBox(width: 50,),
                                     IconButton(
                                       onPressed: () {
@@ -462,8 +471,25 @@ class _HomeState extends State<Home> {
                         SizedBox(height: height/59.33,),
                         Padding(
                           padding: EdgeInsets.only(left: width/21.63),
-                          child: Image.asset(rating2[index],scale: width/137),
-                        )
+                          child: Row(
+                            children: [
+                              Text(rate1[index],
+                                style: TextStyle(
+                                    fontSize: 30,
+                                  fontFamily: "jeju2"
+                                ),
+                              ),
+                              SizedBox(width: 16,),
+                              Text(day[index],
+                                style: TextStyle(
+                                    fontFamily: "jeju2",
+                                    color: CupertinoColors.inactiveGray
+                                ),
+                              ),
+                            ],
+                          )
+                        ),
+
                       ],
                     )
                   ),

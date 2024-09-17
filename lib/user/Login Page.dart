@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -14,7 +15,6 @@ import 'Splash 2.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
-
   @override
   State<Login> createState() => _LoginState();
 }
@@ -23,7 +23,15 @@ class _LoginState extends State<Login> {
   bool? isChecked = false;
   TextEditingController nameController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  @override 
+  @override
+
+  void initState() {
+    super.initState();
+    // Load user details from SharedPreferences when the page initializes
+    final provider = Provider.of<MainProvider>(context, listen: false);
+    provider.loadUserDetails();
+  }
+
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -65,6 +73,7 @@ class _LoginState extends State<Login> {
                           margin: EdgeInsets.symmetric(vertical: height / 59.33),
                           child: Center(
                             child: TextFormField(
+                              maxLength: 10,
                               controller: value.nameController,
                               decoration: InputDecoration(
                                 prefixIcon: ImageIcon(
@@ -198,19 +207,49 @@ class _LoginState extends State<Login> {
                       "Log In",
                       style: TextStyle(fontSize: 24, fontFamily: "jeju2", color: Colors.white),
                     ),
-                    onPressed: () async{
-                       await FirebaseAuth.instance.verifyPhoneNumber(
-                           verificationCompleted: (PhoneAuthCredential credential){},
-                           verificationFailed: (FirebaseAuthException ex){},
-                           codeSent: (String verificationid,int? resendtoeken){},
-                           codeAutoRetrievalTimeout: (String verificationid){},
-                           phoneNumber: nameController.text.toString(),
-                       );
-                      if (formKey.currentState!.validate()) {
-                        value.details();
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ConfirmCode1(),));
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          // ഫീൽഡുകളിൽ നിന്ന് ഫോൺ നമ്പറും പാസ്വേഡും എടുക്കുന്നു
+                          String enteredPhoneNumber = value.nameController.text;
+                          String enteredPassword = value.passwordController.text;
+
+                          try {
+                            // Firebase Query-ൽ നിന്നും ഫോൺ നമ്പർ ചെക്ക് ചെയ്യുന്നു
+                            var querySnapshot = await FirebaseFirestore.instance
+                                .collection('SIGNUP_DETAILS')
+                                .where('PHONE', isEqualTo: enteredPhoneNumber)
+                                .get();
+
+                            //  Check if Phone Number Exists...
+                            if (querySnapshot.docs.isNotEmpty) {
+                              var userData = querySnapshot.docs.first.data();
+
+                              // പാസ്വേഡ് മാച്ച് ചെയ്യുന്നു
+                              if (userData['PASSWORD'] == enteredPassword) {
+                                // പാസ്വേഡ് ശരിയായാൽ Home Page-ലേക്ക് നയിക്കുന്നു
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+                              } else {
+                                // പാസ്വേഡ് തെറ്റായാൽ Snackbar ഉപയോഗിച്ച് Error കാണിക്കുന്നു
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text("Invalid password. Please try again.")),
+                                );
+                              }
+                            } else {
+                              // ഫോണിനമ്പർ കളക്ഷനിൽ ഇല്ലെങ്കിൽ Error കാണിക്കുന്നു
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text("Phone number not found. Please sign up.")),
+                              );
+                            }
+                          } catch (e) {
+                            // Error Handling
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text("Error occurred. Please try again later.")),
+                            );
+                            print(e);
+                          }
+                        }
                       }
-                    },
+
                   ),
                   SizedBox(height: 12,),
                   RichText(

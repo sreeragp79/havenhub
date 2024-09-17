@@ -145,11 +145,29 @@ class _contiState extends State<conti> {
                                 left: width/1.40,
                                 top: height/3.07,
                                 child: Padding(
-                                  padding:  EdgeInsets.only(left: width/22.83),
-                                  child: Image.asset("assets/image/156 rate.png",scale: width/200.75,),
+                                  padding: EdgeInsets.only(
+                                      left: width / 22.83),
+                                  child: Row(
+                                    children: [
+                                      Text("\$156",
+                                        style: TextStyle(
+                                            fontSize: 40,
+                                            fontFamily: "jeju2"
+                                        ),
+                                      ),
+                                      SizedBox(width: 16,),
+                                      Text("Night",
+                                        style: TextStyle(
+                                            fontFamily: "jeju2",
+                                            color: CupertinoColors.inactiveGray,
+                                            fontSize: 23
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                              SizedBox(height: height/14.02,),
+                              SizedBox(height: height/18.02,),
                               Positioned(
                                 left: width/1.40,
                                 top: height/3.07,

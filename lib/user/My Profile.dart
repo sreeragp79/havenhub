@@ -46,7 +46,7 @@ class _EditState extends State<Edit> {
         ),
       ),
       body: Consumer<MainProvider>(
-        builder: (context,addValue,child) {
+        builder: (context,userValue,child) {
           return SingleChildScrollView(
             child: Consumer<MainProvider>(
               builder: (context,value,child) {
@@ -59,12 +59,14 @@ class _EditState extends State<Edit> {
                       child: Stack(
                         children: [
                           CircleAvatar(
-                            backgroundImage: AssetImage("assets/image/profile.png"),
+                            backgroundImage: userValue.addUserProfilePick != null
+                                ? FileImage(userValue.addUserProfilePick!)
+                                : AssetImage('assets/image/userman.png') as ImageProvider,
                             radius: 60,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 70,top: 70),
-                            child: IconButton(
+                           child:  IconButton(
                                 onPressed:() {
                                   showModalBottomSheet(
                                       context: context,
@@ -76,14 +78,16 @@ class _EditState extends State<Edit> {
                                                 leading: Icon(Icons.photo_library),
                                                 title: Text('Choose from Gallery'),
                                                 onTap:() {
-                                                  addValue.pickImage(ImageSource.gallery);
+                                                  userValue.UserPickImage(ImageSource.gallery);
+                                                  Navigator.pop(context);
                                                 },
                                               ),
                                               ListTile(
                                                 leading: Icon(Icons.photo_camera),
                                                 title: Text('Take a Photo'),
                                                 onTap:() {
-                                                  addValue.pickImage(ImageSource.camera);
+                                                  userValue.UserPickImage(ImageSource.camera);
+                                                  Navigator.pop(context);
                                                 },
                                               ),
 
@@ -295,6 +299,7 @@ class _EditState extends State<Edit> {
                             backgroundColor: Color(0xff061673).withOpacity(1),
                           ),
                           onPressed: () {
+                            value.userAddProfile();
                           Navigator.push(context, MaterialPageRoute(builder: (context) =>   Profile(),));
                         },
                           child:Text("Save",

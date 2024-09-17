@@ -118,7 +118,7 @@ class _ProfileState extends State<Profile> {
       ),
       body: SingleChildScrollView(
         child: Consumer<MainProvider>(
-          builder: (context,value,child) {
+          builder: (context,pofileValue,child) {
             return Column(
               children: [
                 SizedBox(
@@ -126,7 +126,9 @@ class _ProfileState extends State<Profile> {
                 ),
                 Center(
                   child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/image/profile.png"),
+                    backgroundImage: pofileValue.addUserProfilePick != null
+                        ? FileImage(pofileValue.addUserProfilePick!)
+                        : AssetImage('assets/image/User_072.png') as ImageProvider,
                     radius: 60,
                   ),
                 ),
@@ -135,7 +137,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 Center(
                   child: Text(
-                    value.firstnameController.text,
+                    pofileValue.firstnameController.text,
                     style: TextStyle(
                       fontSize: 25,
                       color: Color(0xff070D30).withOpacity(1),
@@ -144,7 +146,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 Center(
                   child: Text(
-                    value.emailController.text,
+                    pofileValue.emailController.text,
                     style: TextStyle(
                       fontSize: 18,
                       color: Color(0xff6B7280),
@@ -164,7 +166,7 @@ class _ProfileState extends State<Profile> {
                       foregroundColor: Color(0xff070D30).withOpacity(1),
                     ),
                     onPressed: () {
-                      value.getEditProfile();
+                      pofileValue.getEditProfile();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -326,6 +328,7 @@ class _ProfileState extends State<Profile> {
                       children: [
                         IconButton(
                           onPressed: () {
+                            pofileValue.clearPreferences();
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

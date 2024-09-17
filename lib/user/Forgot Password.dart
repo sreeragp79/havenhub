@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:haven_hub/user/Confirm%20Code.dart';
 
 import 'Login Page.dart';
 
@@ -72,7 +73,7 @@ class _ForgotState extends State<Forgot> {
                   filled: true, // Set filled to true
                   fillColor: Colors.grey.withOpacity(
                       0.10), // Set the fill color// Set filled to true
-                  hintText: "Enter your email or phone number ",
+                  hintText: "Enter phone number ",
                   hintStyle: TextStyle(
                     color: Colors.grey.withOpacity(0.80),
                   ),
@@ -101,7 +102,7 @@ class _ForgotState extends State<Forgot> {
               style: TextStyle(fontSize: 24, fontFamily: "jeju2",color: Colors.white,),
             ),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ConfirmCode1(),));
             },
           ),
           SizedBox(height: 5,),

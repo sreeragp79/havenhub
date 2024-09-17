@@ -69,6 +69,7 @@ class _SignUpState extends State<SignUp> {
                     width: width * 0.86,
                     margin: EdgeInsets.symmetric(vertical: height / 59.33),
                     child: TextFormField(
+                      maxLength: 10,
                       controller: signUp.signupPhoneorEmailController,
                       decoration: InputDecoration(
                         prefixIcon: ImageIcon(
@@ -185,7 +186,7 @@ class _SignUpState extends State<SignUp> {
                     onPressed: () {
                       if (formkey.currentState!.validate()) {
                         signUp.signUpDetails();
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ConfirmCode1()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
                       }
                     },
                   ),
