@@ -19,9 +19,10 @@ class EditBookingDateModel{
 class FavoriteModel{
   String image;
   String name;
+  String place;
   String ratingImage;
   String price;
-  FavoriteModel(this.image,this.name,this.ratingImage,this.price);
+  FavoriteModel(this.image,this.name,this.place,this.ratingImage,this.price);
 }
 class ResortAddingDetails {
   String id;
@@ -29,7 +30,8 @@ class ResortAddingDetails {
   String name;
   String place;
   String information;
-  ResortAddingDetails(this.id,this.image,this.name,this.place,this.information);
+  String price;
+  ResortAddingDetails(this.id,this.image,this.name,this.place,this.information,this.price);
 
   }
 class ReviewStore{

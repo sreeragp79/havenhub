@@ -1,19 +1,21 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:haven_hub/Provider/MainProvider.dart';
 import 'package:provider/provider.dart';
 
+import '../models/userModel.dart';
 import 'Login Page.dart';
 
 class ConfirmPay extends StatefulWidget {
-
-  ConfirmPay({super.key});
+  ResortAddingDetails hotel;
+  ConfirmPay({super.key,required this.hotel});
   @override
   State<ConfirmPay> createState() => _ConfirmPayState();
 }
 
 class _ConfirmPayState extends State<ConfirmPay> {
-
   String? selectPayment ="";
 
   @override
@@ -283,8 +285,7 @@ class _ConfirmPayState extends State<ConfirmPay> {
                             SizedBox(
                               width: 140,
                             ),
-                            Text(
-                              "\$340",
+                            Text("",
                               style: TextStyle(
                                 fontSize: 25,
                                 fontFamily: "jeju2",
@@ -338,7 +339,7 @@ class _ConfirmPayState extends State<ConfirmPay> {
                               width: 205,
                             ),
                             Text(
-                              "\$345",
+                              "",
                               style: TextStyle(
                                 fontSize: 25,
                                 fontFamily: "jeju2",

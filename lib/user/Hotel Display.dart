@@ -3,18 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:haven_hub/Provider/MainProvider.dart';
 import 'package:provider/provider.dart';
 
+import '../models/userModel.dart';
 import 'Book Now.dart';
+import 'Review Adding.dart';
 import 'Review.dart';
 
-class California extends StatefulWidget {
-   California({super.key});
+
+
+class Details1 extends StatefulWidget {
+  ResortAddingDetails hotel;
+  Details1({super.key,required this.hotel});
 
   @override
-  State<California> createState() => _CaliforniaState();
+  State<Details1> createState() => _CaliforniaState();
 
 }
 
-class _CaliforniaState extends State<California> {
+class _CaliforniaState extends State<Details1> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +59,6 @@ class _CaliforniaState extends State<California> {
       ),
       body: Consumer<MainProvider>(
           builder: (context, guestval, child) {
-            String resortName = "California"; // Change this as needed
-            double baseRate = guestval.resortBaseRate[resortName] ?? 0.0;
-            double totalAmount = guestval.getResortAmount(resortName);
             return SingleChildScrollView(
               child: Stack(
                 children: [
@@ -65,15 +68,17 @@ class _CaliforniaState extends State<California> {
                         height: height / 150.33,
                       ),
                       Center(
-                        child: Container(
-                          width: width / 1.11,
-                          height: height / 3.70,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(31),
-                              color: Colors.white,
-                              image: DecorationImage(
-                                  image: AssetImage("assets/image/List 1.png"),
-                                  fit: BoxFit.fill)),
+                        child: InkWell(
+                          child: Container(
+                            width: width / 1.11,
+                            height: height / 3.70,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(31),
+                                color: Colors.white,
+                                image: DecorationImage(
+                                    image: NetworkImage(widget.hotel.image!),
+                                    fit: BoxFit.fill)),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -84,7 +89,7 @@ class _CaliforniaState extends State<California> {
                         child: Padding(
                           padding: EdgeInsets.only(left: width / 10.81),
                           child: Text(
-                            "Beach Hotel California",
+                           widget.hotel.name!,
                             style: TextStyle(
                               fontSize: width / 18.8,
                               color: Color(0xff070D30).withOpacity(1),
@@ -98,7 +103,7 @@ class _CaliforniaState extends State<California> {
                         child: Padding(
                           padding: EdgeInsets.only(left: width / 10.81),
                           child: Text(
-                            "Deichweg 3, 24217 Kalifornien",
+                           widget.hotel.place!,
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.60)
                             ),
@@ -136,10 +141,7 @@ class _CaliforniaState extends State<California> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 16),
                                   child: Text(
-                                    " Located only 100 m away from the\n"
-                                        " white sandy beaches of the Baltic Sea,\n"
-                                        " modern rooms with free WiFi access\n"
-                                        " and a design restaurant.",
+                                      widget.hotel.information!,
                                     style: TextStyle(
                                         color: Colors.blueGrey.withOpacity(
                                             0.78),
@@ -169,7 +171,7 @@ class _CaliforniaState extends State<California> {
                                       left: width / 22.83),
                                   child: Row(
                                     children: [
-                                      Text("\$${baseRate.toStringAsFixed(2)}",
+                                      Text( guestval.totalAmount(widget.hotel.price).toString(),
                                         style: TextStyle(
                                             fontSize: 40,
                                             fontFamily: "jeju2"
@@ -248,10 +250,74 @@ class _CaliforniaState extends State<California> {
                     ],
                   ),
                   Positioned(
-                    left: width / 1.40,
+                    left: width / 1.41,
                     top: height / 3.07,
-                    child: Image.asset(
-                      "assets/image/Cal list.png", scale: width / 102.75,),
+                    // child: Image.asset(
+                    //   "assets/image/Cal list.png", scale: width / 102.75,),
+                    child: Container(
+                      width: 90,
+                      height: 479,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(50),
+                          topRight: Radius.circular(50),
+                          bottomRight: Radius.circular(30)
+                        ),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            spreadRadius: 1,
+                            blurRadius: 5,
+                            offset: Offset(0.10,0.67),
+                          ),
+                        ]
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 4),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 18,),
+                            Text(
+                              guestval.totalAmount(widget.hotel.price).toString(),
+                              style: TextStyle(
+                                  fontSize: 28,
+                                  fontFamily: "jeju2"
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 3),
+                              child: Text("Night",
+                                style: TextStyle(
+                                    fontFamily: "jeju2",
+                                    color: CupertinoColors.inactiveGray,
+                                    fontSize: 13
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 23,),
+                            Image(image: AssetImage("assets/image/wifisd.png",),
+                              height: 30,width: 30,color: Colors.grey.withOpacity(0.67)
+                            ), SizedBox(height: 23,),
+                            Image(image: AssetImage("assets/image/desktop_light@3asax.png",),
+                              height: 30,width: 30,color: Colors.grey.withOpacity(0.67)
+                            ), SizedBox(height: 23,),
+                            Image(image: AssetImage("assets/image/Basket_alt_3_light@3asx.png",),
+                              height: 30,width: 30,color: Colors.grey.withOpacity(0.67)
+                            ), SizedBox(height: 23,),
+                            Image(image: AssetImage("assets/image/Book_open_lixcght.png",),
+                              height: 30,width: 30,color: Colors.grey.withOpacity(0.67)
+                            ), SizedBox(height: 23,),
+                            Image(image: AssetImage("assets/image/drink_light.png",),
+                              height: 30,width: 30,color: Colors.grey.withOpacity(0.67)
+                            ), SizedBox(height: 26,),
+                            Image(image: AssetImage("assets/image/Vector 72.png",),
+                              height: 24,width: 24,color: Colors.grey.withOpacity(0.67)
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                   Positioned(left: 210,
                     top: 698,
@@ -266,7 +332,7 @@ class _CaliforniaState extends State<California> {
                           guestval.incrementValue();
                           guestval.decrementValue();
                           Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => Book(),));
+                            builder: (context) => Book(hotel: widget.hotel,),));
                         },
                         child: Text("Book Now",
                           style: TextStyle(
@@ -283,6 +349,20 @@ class _CaliforniaState extends State<California> {
             );
           }
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(
+      //         builder: (context) => ReviewAdd(),
+      //       ),
+      //     );
+      //   },
+      //   child: Icon(Icons.add),
+      //   backgroundColor: Colors.blue,
+      //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(23)),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

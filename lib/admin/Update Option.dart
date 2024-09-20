@@ -292,6 +292,8 @@ class _UpdationState extends State<Updation> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextField(
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 5,
                     controller: addValue.resortImformationController,
                     decoration: InputDecoration(
                       contentPadding:
@@ -305,26 +307,45 @@ class _UpdationState extends State<Updation> {
                     ),
                   ),
                 ),
-                SizedBox(height: 23),
-                Padding(
-                  padding: EdgeInsets.only(left: 180),
-                  child: Container(
-                    width: 200,
-                    child: TextButton(
-                      onPressed: () {
-                        addValue.addResort();
-                        addValue.clearField();
-                        // Your add function
-                      },
-                      style: TextButton.styleFrom(
-                        backgroundColor: Color(0xff061673).withOpacity(1),
+                SizedBox(height: 20),
+                Container(
+                  width: 300,
+                  decoration: BoxDecoration(
+                    color: Color(0xffD9D9D9).withOpacity(0.56),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: TextField(
+                    controller: addValue.resortPriceController,
+                    decoration: InputDecoration(
+                      contentPadding:
+                      EdgeInsets.symmetric(vertical: 20, horizontal: 12),
+                      border: InputBorder.none,
+                      hintText: "Price",
+                      hintStyle: TextStyle(
+                        color: CupertinoColors.inactiveGray,
+                        fontSize: 19,
                       ),
-                      child: Text(
-                        "Add",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 23),
+                Container(
+                  width: 200,
+                  height: 50,
+                  child: TextButton(
+                    onPressed: () {
+                      addValue.addResort();
+                      addValue.clearField();
+                      // Your add function
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: Color(0xff061673).withOpacity(1),
+                    ),
+                    child: Text(
+                      "Add",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
                       ),
                     ),
                   ),

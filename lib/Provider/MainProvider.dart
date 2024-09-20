@@ -16,7 +16,7 @@ import '../user/Review.dart';
 
 class MainProvider extends ChangeNotifier {
   MainProvider() {
-
+    getExclusiveResorts();
     getReview();
   }
   final FirebaseFirestore db = FirebaseFirestore.instance;
@@ -152,15 +152,17 @@ class MainProvider extends ChangeNotifier {
 
   int value = 0;
 
-  Map<String,double> resortBaseRate={
-    "California": 170.0,
-    "amSeagal":165,
-  };
+  int totalAmount(String baseAmount){
 
-    double getResortAmount(String resortName){
-    double baseRate = resortBaseRate[resortName]?? 0.0;
-    return baseRate * value;
+    int amount = int.parse(baseAmount.replaceAll('\$', ''));
+
+    if(value == 0){
+      return amount;
+    }else{
+      return value*amount;
     }
+  }
+
 
   void incrementValue() {
     value++;
@@ -168,11 +170,12 @@ class MainProvider extends ChangeNotifier {
   }
 
   void decrementValue() {
-    if (value > 0) value--;
+    if (value >0) value--;
     {
       notifyListeners();
     }
   }
+
 
   List<EditBookingDateModel> editBookingDate = [];
 
@@ -235,6 +238,7 @@ class MainProvider extends ChangeNotifier {
   TextEditingController resortNameController = TextEditingController();
   TextEditingController resortPlaceController = TextEditingController();
   TextEditingController resortImformationController = TextEditingController();
+  TextEditingController resortPriceController = TextEditingController();
   String resortImageUrl = "";
   File? addResortFileImg;
 
@@ -247,6 +251,7 @@ class MainProvider extends ChangeNotifier {
         "RESORT_NAME": resortNameController.text,
         "RESORT_PLACE": resortPlaceController.text,
         "RESORT_INFORMATION": resortImformationController.text,
+        "RESORT_PRICE": resortPriceController.text,
       };
 
       // Check if there is an image file to upload
@@ -281,21 +286,27 @@ class MainProvider extends ChangeNotifier {
     }
   }
 
-  List<ResortAddingDetails> editResortDetails = [];
+  List<ResortAddingDetails> ExclusiveList = [];
+  List<ResortAddingDetails> carousalList=[];
 
-  void getResortAddDetails() {
-    db.collection("ADD_RESORT_DETAILS").get().then((value) {
-      editResortDetails = value.docs.map((doc) {
+  void  getExclusiveResorts()async {
+    await db.collection("ADD_RESORT_DETAILS")
+        .get().then((value) {
+      ExclusiveList = value.docs.map((doc) {
         return ResortAddingDetails(
           doc.id,
           doc.get("RESORT IMAGE"),
           doc.get("RESORT_NAME"),
           doc.get("RESORT_PLACE"),
           doc.get("RESORT_INFORMATION"),
+          doc.get("RESORT_PRICE"),
         );
       }).toList();
+      carousalList = ExclusiveList.take(4).toList();
+
       notifyListeners();
     });
+
   }
 
   // clear the details after click the add botton......................................
@@ -303,6 +314,7 @@ class MainProvider extends ChangeNotifier {
     resortNameController.clear();
     resortPlaceController.clear();
     resortImformationController.clear();
+    resortPriceController.clear();
     addResortFileImg = null;
     notifyListeners();
   }
@@ -513,4 +525,6 @@ class MainProvider extends ChangeNotifier {
     storeReviws.removeWhere((review) => review.id == id);
     notifyListeners();
   }
+
+
 }

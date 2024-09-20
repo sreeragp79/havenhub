@@ -20,7 +20,7 @@ import 'Book Now.dart';
 import 'ClubHouse.dart';
 import 'Confirm Code.dart';
 import 'Confirm Pay.dart';
-import 'California.dart';
+import 'Hotel Display.dart';
 import 'Conti.dart';
 import 'My Profile.dart';
 import 'Exclusive.dart';
@@ -77,7 +77,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: California(),
+        home: Home(),
       ),
     );
   }

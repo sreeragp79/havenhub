@@ -1,13 +1,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:haven_hub/Provider/MainProvider.dart';
+import 'package:haven_hub/models/userModel.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'Confirm Pay.dart';
 
 class Book extends StatefulWidget {
-  const Book({super.key});
+  ResortAddingDetails hotel;
+  Book({super.key,required this.hotel});
 
   @override
   State<Book> createState() => _BookState();
@@ -174,7 +176,7 @@ class _BookState extends State<Book> {
                        Navigator.push(
                            context,
                            MaterialPageRoute(
-                             builder: (context) => ConfirmPay(),
+                             builder: (context) => ConfirmPay(hotel: widget.hotel,),
                            ));
                      },
                      child: Text(
