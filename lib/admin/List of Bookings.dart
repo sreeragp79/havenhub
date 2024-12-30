@@ -1,14 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:haven_hub/Provider/MainProvider.dart';
+import 'package:provider/provider.dart';
+import '../models/userModel.dart';
+import 'User Raceipt.dart';
 
 class Listofbooking extends StatefulWidget {
-  const Listofbooking({super.key});
-
+  Listofbooking({super.key,});
   @override
   State<Listofbooking> createState() => _ListofbookingState();
 }
 
 class _ListofbookingState extends State<Listofbooking> {
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -16,7 +20,7 @@ class _ListofbookingState extends State<Listofbooking> {
     return Scaffold(
       backgroundColor: Color(0xffFFFFFF).withOpacity(1),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(height* 0.05),
+        preferredSize: Size.fromHeight(height * 0.05),
         child: AppBar(
           title: Text(
             "Booking List",
@@ -26,83 +30,54 @@ class _ListofbookingState extends State<Listofbooking> {
           backgroundColor: Color(0xffFFFFFF).withOpacity(1),
         ),
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 23,),
-          Center(
-            child: InkWell(
-              onTap: () {
-
-              },
-              child: Container(
-               height: 80,
-                width: 350,
-                decoration: BoxDecoration(
-                  color: Color(0xffFFFFFF).withOpacity(1),
-                  border: Border.all(color: CupertinoColors.inactiveGray,width: 0.56),
-                  borderRadius: BorderRadius.circular(23)
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 23,top: 7),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Jhon",style: TextStyle(
-                          fontSize: 23,
-                          color: Colors.black
+      body: Consumer<MainProvider>(
+        builder: (context1,value,child) {
+          return ListView.builder(
+            padding: EdgeInsets.symmetric(vertical: 12.0),
+            itemCount: value.bookingList.length, // Using the length of the usernames list
+            itemBuilder: (context, index) {
+              var item = value.bookingList[index];
+              return Center(
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => UserRaceipt(item: item,),));
+                    // Handle tap
+                  },
+                  child: Container(
+                    margin: EdgeInsets.all(12),
+                    height: 80,
+                    width: 350,
+                    decoration: BoxDecoration(
+                      color: Color(0xffFFFFFF).withOpacity(1),
+                      border: Border.all(color: CupertinoColors.inactiveGray, width: 0.56),
+                      borderRadius: BorderRadius.circular(23),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 23, top: 7),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                          item.userName,// Displaying the username
+                            style: TextStyle(fontSize: 23, color: Colors.black),
+                          ),
+                          SizedBox(height: 7),
+                          Text(
+                            item.resortName, // Displaying the resort name
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: CupertinoColors.inactiveGray.withOpacity(1),
+                            ),
+                          ),
+                        ],
                       ),
-                      ),
-                      SizedBox(height: 7,),
-                      Text("Hotel California",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: CupertinoColors.inactiveGray.withOpacity(1),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
-          SizedBox(height: 12,),
-          Center(
-            child: InkWell(
-              onTap: () {
-
-              },
-              child: Container(
-                height: 80,
-                width: 350,
-                decoration: BoxDecoration(
-                    color: Color(0xffFFFFFF).withOpacity(1),
-                    border: Border.all(color: CupertinoColors.inactiveGray,width: 0.56),
-                    borderRadius: BorderRadius.circular(23)
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 23,top: 7),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Jhon",style: TextStyle(
-                          fontSize: 23,
-                          color: Colors.black
-                      ),
-                      ),
-                      SizedBox(height: 7,),
-                      Text("Hotel California",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: CupertinoColors.inactiveGray.withOpacity(1),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
+              );
+            },
+          );
+        }
       ),
     );
   }

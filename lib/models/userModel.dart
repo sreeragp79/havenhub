@@ -15,15 +15,6 @@ class EditBookingDateModel{
   EditBookingDateModel(this.id,this.checkIn,this.checkOut,this.value);
 }
 
-// Favorite Model Classs
-class FavoriteModel{
-  String image;
-  String name;
-  String place;
-  String ratingImage;
-  String price;
-  FavoriteModel(this.image,this.name,this.place,this.ratingImage,this.price);
-}
 class ResortAddingDetails {
   String id;
   String image;
@@ -32,8 +23,8 @@ class ResortAddingDetails {
   String information;
   String price;
   ResortAddingDetails(this.id,this.image,this.name,this.place,this.information,this.price);
-
   }
+
 class ReviewStore{
   String id;
   String image;
@@ -41,4 +32,35 @@ class ReviewStore{
   String resortName;
   String reviewSub;
   ReviewStore(this.id,this.image,this.name,this.resortName,this.reviewSub);
+}
+class BookingGetAdmin{
+  String id;
+  String image;
+  String price;
+  String resortName;
+  String checkIn;
+  String guest;
+  String checkOut;
+  String totelAmount;
+  String taxTotelAmount;
+  String userName;
+  String number;
+  BookingGetAdmin(
+      this.id,this.image,this.price,this.resortName,this.checkIn,this.guest,
+      this.checkOut,this.totelAmount,this.taxTotelAmount,
+      this.userName,this.number,
+      );
+}
+class NotificationMessage{
+  String bookingId;
+  String title;
+  String subTitle;
+  String opened;
+  String userId;
+  String notificationId;
+  NotificationMessage(this.bookingId,this.title,this.subTitle,this.opened,this.userId,this.notificationId);
+}
+class SignUpGet{
+  String userId;
+  SignUpGet(this.userId);
 }

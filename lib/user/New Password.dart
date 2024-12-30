@@ -178,29 +178,8 @@ class _PasswordState extends State<Password> {
                     color: Colors.black.withOpacity(1),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Login(),
-                        ));
+                    Navigator.pop(context);
                   },
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Login(),
-                        ));
-                  },
-                  child: Text(
-                    "Back to Log In ",
-                    style: TextStyle(
-                      color: Color(0xff070D30),
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
                 ),
               ],
             ),

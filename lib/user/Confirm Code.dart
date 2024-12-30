@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:haven_hub/user/New%20Password.dart';
 import 'package:pinput/pinput.dart';
-
 import 'Adress.dart';
 import 'Login Page.dart';
 
 class ConfirmCode1 extends StatefulWidget {
-  ConfirmCode1({super.key});
+  ConfirmCode1({super.key, required String verificationid});
   @override
   State<ConfirmCode1> createState() => _OtpState();
 }
-class _OtpState extends State<ConfirmCode1> {
 
+class _OtpState extends State<ConfirmCode1> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -19,122 +19,130 @@ class _OtpState extends State<ConfirmCode1> {
     return Scaffold(
       backgroundColor: Color(0xffFFFFFF).withOpacity(1),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(height* 0.05),
+        preferredSize: Size.fromHeight(height * 0.05),
         child: AppBar(
           backgroundColor: Color(0xffFFFFFF).withOpacity(1),
           leading: Padding(
-            padding:  EdgeInsets.only(left:width/34.25),
+            padding: EdgeInsets.only(left: width / 34.25),
             child: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.black.withOpacity(0.7)), // Specify icon and color
+              icon: Icon(Icons.arrow_back,
+                  color:
+                      Colors.black.withOpacity(0.7)), // Specify icon and color
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
           ),
-
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: height* 0.06,),
+            SizedBox(
+              height: height * 0.06,
+            ),
             Center(
               child: Text(
                 "Confirm your code ",
                 style: TextStyle(fontSize: 40, fontFamily: "jeju2"),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.only(right: 18),
-              child: Text("    Enter the verification code",
+              child: Text(
+                "    Enter the verification code",
                 style: TextStyle(
                   fontSize: 17,
                   color: Colors.grey.withOpacity(1),
                 ),
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Padding(
               padding: const EdgeInsets.all(30),
               child: Pinput(
                 length: 6,
-                defaultPinTheme: (
-                    PinTheme(
-                      textStyle: TextStyle(
-                          fontFamily: "jeju2",
-                          fontSize: 23
-                      ),
-                      width: width* 0.16,
-                      height: height* 0.06,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.20),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    )
-                ),
+                defaultPinTheme: (PinTheme(
+                  textStyle: TextStyle(fontFamily: "jeju2", fontSize: 23),
+                  width: width * 0.16,
+                  height: height * 0.06,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.20),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                )),
               ),
             ),
-            SizedBox(height: 37,),
+            SizedBox(
+              height: 37,
+            ),
             TextButton(
               style: TextButton.styleFrom(
-                backgroundColor:Color(0xff061673),
-                minimumSize: Size(width * 0.85,height *0.07),
+                backgroundColor: Color(0xff061673),
+                minimumSize: Size(width * 0.85, height * 0.07),
               ),
               child: Text(
                 "Continue",
-                style: TextStyle(fontSize: 24, fontFamily: "jeju2",color: Colors.white,),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontFamily: "jeju2",
+                  color: Colors.white,
+                ),
               ),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Address(),));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Password(),
+                    ));
               },
             ),
-            SizedBox(height: height* 0.01,),
+            SizedBox(
+              height: height * 0.01,
+            ),
             InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>Login() ,));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Login(),
+                    ));
               },
-              child: Text("Sent code again ",
+              child: Text(
+                "Sent code again ",
                 style: TextStyle(
-                  color:Colors.grey.withOpacity(0.78),
+                  color: Colors.grey.withOpacity(0.78),
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
                   fontFamily: "jeju2",
                 ),
               ),
             ),
-            SizedBox(height: height* 0.02,),
+            SizedBox(
+              height: height * 0.02,
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 115),
               child: Row(
                 children: [
                   IconButton(
-                    icon:Icon(Icons.arrow_back,color: Colors.black.withOpacity(1),
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.black.withOpacity(1),
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),));
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Login(),
+                          ));
                     },
                   ),
-
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>Login() ,));
-                    },
-                    child: Text("Back to Log In ",
-                      style: TextStyle(
-                        color: Color(0xff070D30),
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-
-                      ),
-                    ),
-                  ),
-
                 ],
               ),
             ),
-
-
           ],
         ),
       ),

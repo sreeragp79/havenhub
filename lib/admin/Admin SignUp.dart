@@ -1,23 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:haven_hub/Provider/LoginProvider.dart';
 import 'package:provider/provider.dart';
+import '../user/Login Page.dart';
+import '../user/SignUp Otp.dart';
+import 'Admin Login.dart';
+import 'Admin Otp.dart';
 
-import 'Confirm Code.dart';
-import 'Home.dart';
-import 'Login Page.dart';
-import 'SignUp Otp.dart';
-
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
-
+class AdminSignUp extends StatefulWidget {
+  const AdminSignUp({super.key});
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<AdminSignUp> createState() => _SignUpState();
 }
-
-class _SignUpState extends State<SignUp> {
+class _SignUpState extends State<AdminSignUp> {
   bool? isChecked = false;
   bool? isLoading = false;
   final formkey = GlobalKey<FormState>();
@@ -54,7 +50,7 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(height: height * 0.02),
                   Center(
                     child: Text(
-                      "Sign Up",
+                      "Admin SignUp",
                       style: TextStyle(fontSize: 45, fontFamily: "jeju2"),
                     ),
                   ),
@@ -179,8 +175,8 @@ class _SignUpState extends State<SignUp> {
                     side: BorderSide(width: 1),
                   ),
                   SizedBox(height: height * 0.025),
-                  isLoading! ? CircularProgressIndicator()
-                      : TextButton(
+                  isLoading! ? CircularProgressIndicator():
+                  TextButton(
                     style: TextButton.styleFrom(
                       backgroundColor: Color(0xff061673),
                       minimumSize: Size(width * 0.85, height * 0.07),
@@ -190,14 +186,12 @@ class _SignUpState extends State<SignUp> {
                       style: TextStyle(fontSize: 24, fontFamily: "jeju2", color: Colors.white),
                     ),
                     onPressed: () async {
-                      signUp.showSignUpNotification();
                       signUp.signUpDetails();
                       if (formkey.currentState!.validate()) {
                         setState(() {
                           isLoading = true;
                         });
                         print("Phone Number: " + signUp.signupPhoneorEmailController.text.toString());
-
                         await FirebaseAuth.instance.verifyPhoneNumber(
                           verificationCompleted: (PhoneAuthCredential credential) {},
                           verificationFailed: (FirebaseAuthException ex) {},
@@ -211,7 +205,7 @@ class _SignUpState extends State<SignUp> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ConfirmCode2(
+                                builder: (context) => AdminOtp(
                                   verificationid: verificationid,
                                 ),
                               ),
@@ -242,44 +236,11 @@ class _SignUpState extends State<SignUp> {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => AdminLogin()));
                             },
                         ),
                       ],
                     ),
-                  ),
-                  SizedBox(height: height * 0.01),
-                  Text(
-                    "or",
-                    style: TextStyle(
-                      color: Color(0xff070D30).withOpacity(0.50),
-                      fontSize: 20,
-                    ),
-                  ),
-                  SizedBox(height: height * 0.03),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: width * 0.31,
-                        height: height * 0.08,
-                        decoration: BoxDecoration(
-                          color: Color(0xff070D30).withOpacity(0.10),
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        child: Image.asset("assets/image/google.png", scale: 3.10),
-                      ),
-                      SizedBox(width: width * 0.09),
-                      Container(
-                        width: width * 0.31,
-                        height: height * 0.08,
-                        decoration: BoxDecoration(
-                          color: Color(0xff070D30).withOpacity(0.10),
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        child: Image.asset("assets/image/apple.png", scale: 3),
-                      ),
-                    ],
                   ),
                 ],
               ),

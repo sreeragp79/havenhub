@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:haven_hub/Provider/MainProvider.dart';
 import 'package:haven_hub/user/Review%20Adding.dart';
 import 'package:provider/provider.dart';
-
 import '../models/userModel.dart';
 
 class Review extends StatelessWidget {
   Review({super.key});
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -139,7 +137,8 @@ class Review extends StatelessWidget {
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.blue,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(23)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(23),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

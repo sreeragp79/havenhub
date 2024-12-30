@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:haven_hub/Provider/LoginProvider.dart';
 import 'package:provider/provider.dart';
 
 import '../Provider/MainProvider.dart';
@@ -28,16 +29,15 @@ class _ProfileState extends State<Profile> {
               builder: (context) => Home(),
             ));
         break;
-      case "Settings":
-        null;
-        break;
+      // case "Settings":
+      //   null;
+      //   break;
       case "LogOut":
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Home(),
+              builder: (context) => Login(),
             ));
-        null;
         break;
     }
   }
@@ -96,19 +96,21 @@ class _ProfileState extends State<Profile> {
                     ],
                   ),
                 ),
-                PopupMenuItem<String>(
-                  value: "Home",
-                  child: Row(
-                    children: [
-                      Icon(Icons.logout_rounded,
-                          color: Colors.black.withOpacity(1)),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text("LogOut"),
-                    ],
-                  ),
-                ),
+                // PopupMenuItem<String>(
+                //   value: "LogOut",
+                //   onTap: () {
+                //   },
+                //   child: Row(
+                //     children: [
+                //       Icon(Icons.logout_rounded,
+                //           color: Colors.black.withOpacity(1)),
+                //       SizedBox(
+                //         width: 8,
+                //       ),
+                //       Text("LogOut"),
+                //     ],
+                //   ),
+                // ),
               ],
               color: Colors.white10,
               elevation: 0,
@@ -128,7 +130,7 @@ class _ProfileState extends State<Profile> {
                   child: CircleAvatar(
                     backgroundImage: pofileValue.addUserProfilePick != null
                         ? FileImage(pofileValue.addUserProfilePick!)
-                        : AssetImage('assets/image/User_072.png') as ImageProvider,
+                        :  AssetImage('assets/image/user12344.png') as ImageProvider,
                     radius: 60,
                   ),
                 ),
@@ -186,7 +188,7 @@ class _ProfileState extends State<Profile> {
                           },
                           icon: ImageIcon(
                             AssetImage(
-                              "assets/image/User.png",
+                              "assets/image/User_02.png",
                             ),
                             size: 31,
                           ),
@@ -278,15 +280,11 @@ class _ProfileState extends State<Profile> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Login(),
-                                ));
+
                           },
                           icon: ImageIcon(
                             AssetImage(
-                              "assets/image/Settings.png",
+                              "assets/image/Settingsss.png",
                             ),
                             size: 31,
                           ),
@@ -309,53 +307,60 @@ class _ProfileState extends State<Profile> {
                 SizedBox(
                   height: 30,
                 ),
-                Container(
-                  width: width * 0.86,
-                  height: height * 0.08,
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: Colors.grey.withOpacity(0.10),
-                      foregroundColor: Color(0xff070D30).withOpacity(1),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Login(),
-                          ));
-                    },
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            pofileValue.clearPreferences();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Splash2(),
-                                ));
-                          },
-                          icon: ImageIcon(
-                            AssetImage(
-                              "assets/image/LogOut.png",
+                Consumer<Loginprovider>(
+                    builder: (context87,value2,child) {
+                    return Consumer<MainProvider>(
+                        builder: (context8,value23,child) {
+                        return Container(
+                          width: width * 0.86,
+                          height: height * 0.08,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.grey.withOpacity(0.10),
+                              foregroundColor: Color(0xff070D30).withOpacity(1),
                             ),
-                            size: 31,
+                            onPressed: () {
+                              print("vcbcvghcvbcvbcfgv");
+                              value23.clearNotification();
+                              value2.clearPreferences();
+
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Login(),
+                                  ));
+                            },
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+
+                                  },
+                                  icon: ImageIcon(
+                                    AssetImage(
+                                      "assets/image/LogOut.png",
+                                    ),
+                                    size: 31,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  "Log Out ",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color(0xff070D30).withOpacity(1),
+                                    fontFamily: "jeju2",
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          "Log Out",
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xff070D30).withOpacity(1),
-                            fontFamily: "jeju2",
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                        );
+                      }
+                    );
+                  }
                 ),
               ],
             );

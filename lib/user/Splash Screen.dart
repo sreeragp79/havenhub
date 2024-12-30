@@ -1,59 +1,65 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:haven_hub/admin/Admin%20Login.dart';
+import 'package:haven_hub/admin/Admin%20SignUp.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'Splash 2.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
 
   @override
-  State<Splash> createState() => _SplashState();
+  State<Splash> createState() => SplashState();
 }
 
-class _SplashState extends State<Splash> {
+class SplashState extends State<Splash> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3),() {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Splash2(),));
-    },);
+    checkPackage();
   }
-  Widget build(BuildContext context) {
-    return Scaffold(
-            body: Column(
-              children: [
-                Stack(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xff070D30), Color(0xff162996)],
-                        ),
-                      ),
-                      child: Image.asset("assets/image/Haven logo.png",
-                          color: Colors.white, scale: 3),
-                    ),
-                    Positioned(
-                      bottom: 30,
-                      left: 145,
-                      child: Text(
-                        "HavenHub",
-                        style: TextStyle(
-                          fontFamily: "oregano",
-                          color: Colors.white,
-                          fontSize: 37,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
 
-            ),
+  void checkPackage() async {
+    try {
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      String packageName = packageInfo.packageName;
+
+      if (mounted) {
+        Future.delayed(Duration(seconds: 3), () {
+          if (packageName == "com.example.haven_hub") {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => Splash2()),
+            );
+          } else if (packageName == "com.example.haven_hub_admin") {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => AdminSignUp()),
+            );
+          }
+          print("Package Name: $packageName");
+        });
+      }
+    } catch (e) {
+      print("Error getting package info: $e");
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      body: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.fill,
+            image: AssetImage("assets/image/havenHubSplash.png"),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -17,50 +17,51 @@ class _Splash2State extends State<Splash2> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    // print(height);
-    // print(width);
-    // screen hight 890,
-    // screen width 411,
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: height / 1.64,
-                  width: width/1.98,
-                  decoration:BoxDecoration(
+                  height: height / 1.64, // Adjusted based on 890 height
+                  width: width / 1.98,   // Adjusted based on 411 width
+                  decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(100),
                       bottomLeft: Radius.circular(100),
                     ),
                     image: DecorationImage(
-                      image: AssetImage("assets/image/blue.png"),fit: BoxFit.fill
-                    )
+                      image: AssetImage("assets/image/blue.png"),
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
                 Expanded(
                   child: Column(
                     children: [
                       Container(
-                        height: height/3.20,
+                        height: height / 3.20, // Adjusted based on 890 height
                         decoration: BoxDecoration(
                           color: Colors.blue,
                           image: DecorationImage(
-                            image: AssetImage("assets/image/yellow.png"),fit: BoxFit.fill
-                          )
+                            image: AssetImage("assets/image/Rectangle 15.png"),
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
-                      SizedBox(height: height/130),
-                      Text(" >> >> >> >> >> >> >>   ",
-                      style: TextStyle(
-                        fontFamily: "jeju2",
-                        fontSize: width/20.86,
-                        color: Colors.grey.withOpacity(0.70)
-                      ),
+                      SizedBox(height: height / 130), // Adjusted based on 890 height
+                      Text(
+                        " >> >> >> >> >> >> >>   ",
+                        style: TextStyle(
+                          fontFamily: "jeju2",
+                          fontSize: width / 20.86, // Adjusted based on 411 width
+                          color: Colors.grey.withOpacity(0.70),
+                        ),
                       ),
                       Text(
                         "The best\n"
@@ -68,65 +69,58 @@ class _Splash2State extends State<Splash2> {
                             "guide for\n"
                             " your\n"
                             " pocket.\n",
-                         style: TextStyle(
-                           fontFamily: "jeju",
-                           fontSize: height/18.54,
-                           height: height/770.66,
-                           color: Color(0xff070D30),
-                         ),
+                        style: TextStyle(
+                          fontFamily: "jeju",
+                         fontSize: 33,
+                         // Adjusted based on 890 height
+                          color: Color(0xff070D30),
+                        ),
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 6,),
+            SizedBox(height: 6),
             Text(
               "  The easiest way to discover your  havens.\n"
                   "  book hotels &  find attractions and\n "
                   " restaurants,",
-            style: TextStyle(
-                fontSize: width/17.86,
+              style: TextStyle(
+                fontSize: 20, // Adjusted based on 411 width
                 fontFamily: "jeju",
-                color: Colors.black.withOpacity(1).withOpacity(1),
+                color: Colors.black.withOpacity(1),
                 fontWeight: FontWeight.w300,
-                wordSpacing:height/887,
-                // fontWeight: FontWeight.w600,
+                wordSpacing: height / 887, // Adjusted based on 890 height
+              ),
             ),
-            ),
-            SizedBox(height: height/89,),
+            SizedBox(height: height / 89), // Adjusted based on 890 height
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding:  EdgeInsets.all(height/50),
+                padding: EdgeInsets.all(height / 50), // Adjusted based on 890 height
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Home(),));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
                   },
                   child: Container(
-                    width: width/3.425,
-                    height:height/5.93,
+                    width: width / 3.425,  // Adjusted based on 411 width
+                    height: height / 5.93, // Adjusted based on 890 height
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xff070D30), Color(0xff162996)],
-                        ),
-                  ),
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Color(0xff070D30), Color(0xff162996)],
+                      ),
+                    ),
                     child: Center(
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp(),));
-                        },
-                        child: Text(
-                          "Explore",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: "jeju2",
-                            fontSize: width/13.67,
-                          ),
-
+                      child: Text(
+                        "Explore",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: "jeju2",
+                          fontSize: width / 13.67, // Adjusted based on 411 width
                         ),
                       ),
                     ),

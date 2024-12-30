@@ -51,7 +51,22 @@ android {
             signingConfig = signingConfigs.debug
         }
     }
+    flavorDimensions "version"
+
+    productFlavors{
+        user{
+            dimension "version"
+            applicationId "com.example.haven_hub"
+            resValue "string","app_name", "Haven Hub"
+        }
+        admin{
+            dimension "version"
+            applicationId "com.example.haven_hub_admin"
+            resValue "string","app_name", "Haven Admin"
+        }
+    }
 }
+
 
 flutter {
     source = "../.."

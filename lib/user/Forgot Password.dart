@@ -102,7 +102,7 @@ class _ForgotState extends State<Forgot> {
               style: TextStyle(fontSize: 24, fontFamily: "jeju2",color: Colors.white,),
             ),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ConfirmCode1(),));
+              // Navigator.push(context, MaterialPageRoute(builder: (context) => ConfirmCode1(),));
             },
           ),
           SizedBox(height: 5,),
@@ -114,7 +114,7 @@ class _ForgotState extends State<Forgot> {
                   icon:Icon(Icons.arrow_back,color: Colors.black.withOpacity(1),
                   ),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),));
+                    Navigator.pop(context);
                   },
                 ),
                 InkWell(

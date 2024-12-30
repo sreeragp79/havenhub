@@ -1,20 +1,20 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:haven_hub/Provider/LoginProvider.dart';
 import 'package:provider/provider.dart';
 
 import '../Provider/MainProvider.dart';
-import 'Sign Up.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+
+class AdminLogin extends StatefulWidget {
+  const AdminLogin({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<AdminLogin> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends State<AdminLogin> {
   bool? isChecked = false;
   TextEditingController nameController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -35,7 +35,7 @@ class _LoginState extends State<Login> {
               ),
               Center(
                 child: Text(
-                  "Log In",
+                  "AdminLogin",
                   style: TextStyle(
                     fontSize: width * 0.109, // fontSize: width / 9.13
                     fontFamily: "jeju2",
@@ -158,40 +158,7 @@ class _LoginState extends State<Login> {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: width * 0.34), // padding: left 140 converted
-                child: InkWell(
-                  onTap: () {
-                    // Forgot password logic
-                  },
-                  child: Text(
-                    "Forgot your password?",
-                    style: TextStyle(
-                      color: Colors.grey.withOpacity(0.80),
-                      fontSize: width * 0.0415, // fontSize: 17 converted
-                    ),
-                  ),
-                ),
-              ),
-              CheckboxListTile(
-                title: Text(
-                  "Remember me",
-                  style: TextStyle(
-                    color: Colors.grey.withOpacity(0.80),
-                    fontSize: width * 0.0415, // fontSize: 17 converted
-                  ),
-                ),
-                value: isChecked,
-                onChanged: (val) {
-                  setState(() {
-                    isChecked = val;
-                  });
-                },
-                controlAffinity: ListTileControlAffinity.leading,
-                contentPadding: EdgeInsets.symmetric(horizontal: width * 0.0827), // horizontal: 34 converted
-                dense: true,
-                side: BorderSide(width: 17),
-              ),
+
               SizedBox(height: height * 0.026), // height: 23 converted
               Consumer<Loginprovider>(builder: (context, value2, child) {
                 return TextButton(
@@ -213,41 +180,8 @@ class _LoginState extends State<Login> {
                       await value2.userDataStore(context, phone, password);
                     });
               }),
-              SizedBox(height: height * 0.0135), // height: 12 converted
-              RichText(
-                text: TextSpan(
-                  text: "Don't have an account?",
-                  style: TextStyle(
-                    color: Colors.grey.withOpacity(0.90),
-                    fontSize: width * 0.039, // fontSize: 16 converted
-                  ),
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: " Sign Up",
-                        style: TextStyle(
-                          color: Color(0xff070D30),
-                          fontSize: width * 0.039, // fontSize: 16 converted
-                        ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SignUp(),
-                              ),
-                            );
-                          }),
-                  ],
-                ),
-              ),
               SizedBox(height: height * 0.0056), // height: 5 converted
-              Text(
-                "or",
-                style: TextStyle(
-                  color: Color(0xff070D30).withOpacity(0.50),
-                  fontSize: width * 0.0486, // fontSize: 20 converted
-                ),
-              ),
+
               SizedBox(height: height * 0.0292), // height: 26 converted
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

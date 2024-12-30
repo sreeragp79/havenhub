@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:haven_hub/Provider/LoginProvider.dart';
 import 'package:haven_hub/Provider/MainProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +12,7 @@ class Favorite extends StatefulWidget {
 }
 
 class _FavoriteState extends State<Favorite> {
-  bool isChecked = false;
+  bool isChecked = true;
 
   @override
   Widget build(BuildContext context) {
@@ -43,94 +44,71 @@ class _FavoriteState extends State<Favorite> {
           ),
         ),
       ),
-      body: Consumer<MainProvider>(
-        builder: (context, value, child) {
-          return ListView.builder(
-            itemCount: 1,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12.0),
-                child: Center(
-                  child: Container(
-                    width: width * 0.89,
-                    height: height * 0.15,
-                    decoration: BoxDecoration(
-                      color: Color(0xffFFFFFF).withOpacity(1),
-                      borderRadius: BorderRadius.circular(25),
-                      boxShadow: [
-                        BoxShadow(
-                          spreadRadius: 2,
-                          color: CupertinoColors.inactiveGray.withOpacity(0.26),
-                          blurRadius: 4,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      children: [
-                        // Image Container
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            height: height * 0.12,
-                            width: width * 0.32,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              color: Colors.red,
+      body: Consumer<Loginprovider>(
+          builder: (context90, val, child) {
+          return Consumer<MainProvider>(
+            builder: (context77, value, child) {
+              return value.ExclusiveList.isNotEmpty?
+                ListView.builder(
+                itemCount: value.ExclusiveList.length,
+                itemBuilder: (context, index) {
+                  var item = value.ExclusiveList[index];
+                  print("${val.favoriteResortList.contains(item.id)} bbbbbbbbbbbbb ${value.ExclusiveList.length}");
+                  return val.favoriteResortList.contains(item.id)?
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12.0),
+                    child: Center(
+                      child: Container(
+                        width: width * 0.89,
+                        height: height * 0.15,
+                        decoration: BoxDecoration(
+                          //
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(25),
+                          boxShadow: [
+                            BoxShadow(
+                              spreadRadius: 2,
+                              color: CupertinoColors.inactiveGray.withOpacity(0.26),
+                              blurRadius: 4,
+                              offset: Offset(0, 3),
                             ),
-                            child: Image.asset(
-                              "assets/image/california.png",
-                              fit: BoxFit.fill,
-                            ),
-                          ),
+                          ],
                         ),
-                        // Text and Icon Column
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 13.0),
-                            child: Column(
+                        child: Row(
+                          children: [
+                            // Image Container
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                height: height * 0.12,
+                                width: width * 0.32,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16),
+                                  image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: NetworkImage( item.image,)
+                                  ),
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 // Hotel Name and Delete Icon
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Beach Hotel California",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Color(0xff070D30).withOpacity(1),
-                                        fontFamily: "jeju2",
-                                      ),
-                                    ),
-                                    IconButton(
-                                      onPressed: () {
-                                        print("delete");
-                                      },
-                                      icon: Icon(
-                                        Icons.delete,
-                                        color: Colors.black,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  ],
+                                SizedBox(height:height/40.23,),
+                                Text(
+                                  item.name,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color(0xff070D30).withOpacity(1),
+                                    fontFamily: "jeju2",
+                                  ),
                                 ),
-                                // Star and Rating
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/image/Star.png",
-                                      scale: 3.56,
-                                    ),
-                                    SizedBox(width: 5),
-                                    Text(
-                                      "4.5",
-                                      style: TextStyle(
-                                        color: CupertinoColors.inactiveGray.withOpacity(0.80),
-                                        fontFamily: "jeju2",
-                                      ),
-                                    ),
-                                  ],
+                                SizedBox(height: 6,),
+                                Image.asset(
+                                  "assets/image/500 re.png",
+                                  scale: 4.20,
                                 ),
                                 // Price and Favorite Icon
                                 Row(
@@ -139,67 +117,65 @@ class _FavoriteState extends State<Favorite> {
                                     Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          "\$170",
-                                          style: TextStyle(
-                                            fontSize: 29,
-                                            fontFamily: "jeju2",
-                                            color: Color(0xff070D30).withOpacity(1),
-                                          ),
-                                        ),
-                                        SizedBox(height: 5),
-                                        Text(
-                                          "Night",
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            fontFamily: "jeju2",
-                                            color: CupertinoColors.inactiveGray.withOpacity(0.80),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    IconButton(
-                                      onPressed: () {
-
-                                        setState(() {
-                                          isChecked = !isChecked;
-                                        });
-                                        ScaffoldMessenger.of(context).showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              isChecked ? "Added to Favorites" : "Removed from Favorites",
+                                        SizedBox(height: 15,),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              item.price,
                                               style: TextStyle(
-                                                color: Colors.black.withOpacity(1),
-                                                fontSize: 17,
+                                                fontSize: 29,
+                                                fontFamily: "jeju2",
+                                                color: Color(0xff070D30).withOpacity(1),
                                               ),
                                             ),
-                                            backgroundColor: Color(0xffFFFFFF).withOpacity(1),
-                                            elevation: 5,
-                                            behavior: SnackBarBehavior.floating,
-                                            duration: Duration(seconds: 2),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(25),
+                                            SizedBox(width: 10,),
+                                            Text(
+                                              "Night",
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                fontFamily: "jeju2",
+                                                color: CupertinoColors.inactiveGray.withOpacity(0.80),
+                                              ),
                                             ),
+                                          ],
+                                        ),
+
+                                      ],
+                                    ),
+                                    Consumer<Loginprovider>(
+                                      builder: (context,value2,child) {
+                                        return SizedBox(
+                                          height: height/30.34,width: height/8.56,
+                                          child: IconButton(
+                                            onPressed: () {
+                                                String resortId = item.id;
+                                                value2.addToFavoriteResorts(value2.loginUserId,resortId);
+                                                isChecked = !isChecked;
+                                            },
+                                            icon: Icon(Icons.favorite),
+                                            color: value2.favoriteResortList.contains(item.id) ? Colors.red : Colors.grey,
                                           ),
                                         );
-                                      },
-                                      icon: Icon(Icons.favorite),
-                                      color: isChecked ? Colors.red : Colors.grey,
+                                      }
                                     ),
                                   ],
                                 ),
                               ],
                             ),
-                          ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
+                  ):SizedBox();
+                },
+              )
+              :SizedBox(
+                height: height/1.5,
+                child: Center(child: Text("No Resorts")),
               );
             },
           );
-        },
+        }
       ),
     );
   }
